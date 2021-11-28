@@ -2,11 +2,22 @@ var readlineSync = require('readline-sync');
 
 var myAge = readlineSync.question('');
 
- var userName = readlineSync.question('May I have your name? '+"\n");
- console.log('Hi ' + userName + ' ! Welcome to my Quiz !!');
+ var name = readlineSync.question('May I have your name? '+"\n");
+ console.log('Hi ' + name + ' ! Welcome to my Quiz !!');
  console.log('Lets start the quiz...'+"\n");
 
 var score = 0;
+var highScores = [
+  {
+    name: "Bhavika",
+    score: 3
+  },
+
+  {
+    name: "Mona",
+    score: 3
+  },
+]
 
 var questions = 
 [
@@ -57,6 +68,14 @@ function game() {
     //calling function play reccursively till the loop ends
   }
 }
+function showScore(){
+console.log("You Scored: ", score +"/3");
+if (score===3){
+highScores.push({name,score})
+}
+console.log("Highest scorers :")
+highScores.map(score => console.log(score.name, " : ", score.score));
+}
 
 game();
-console.log("You Scored: ", score +"/3");
+showScore();
